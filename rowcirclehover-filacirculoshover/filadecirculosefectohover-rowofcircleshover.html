@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila de Círculos con Efecto de Hover - Row of Circles with Hover Effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+            /* Mantener una fila en pantallas grandes */
+            max-width: 100%;
+        }
+
+        .item {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #EDEDED;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 10px;
+            transition: background-color 0.5s, color 0.5s, transform 0.4s ease;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: poppins;
+            text-transform: uppercase;
+            color: #192642;
+            cursor: crosshair;
+            mix-blend-mode: multiply;
+        }
+
+
+        /* Superposición para ver más gris */
+        .item:not(:first-child) {
+            margin-left: -30px;
+            /* Hace que los bordes se superpongan */
+
+        }
+
+        /* Hover para todos los elementos */
+        .item:hover {
+            background: #192642;
+            color: white;
+            transform: scale(1.1);
+            /* Escala suave */
+        }
+
+        .item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .item:hover p {
+            color: white;
+        }
+
+        .item ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ocultamos inicialmente el texto descriptivo */
+        .item .description {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            /* Transición suave para el texto */
+        }
+
+        /* Mostramos la descripción cuando se hace hover */
+        .item:hover .one-face {
+            display: none;
+        }
+
+        .item:hover .description {
+            display: block;
+            opacity: 1;
+            margin-top: -35px;
+        }
+
+        .one-face ul li {
+            list-style-type: none;
+
+        }
+
+        .one-face ul li:nth-child(1) {
+            font-weight: 800;
+            font-size: 30px;
+        }
+
+        .one-face ul li:nth-child(2) {
+            font-size: 15px;
+            line-height: 19px;
+            text-transform: uppercase;
+        }
+
+        .description ul li {
+            list-style-type: none;
+            font-family: poppins;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .description ul li:nth-child(1) {
+            font-weight: 700;
+            font-size: 30px;
+
+        }
+
+        .description ul li:nth-child(2) {
+            font-size: 14px;
+            line-height: 17px;
+        }
+
+        .description ul li:nth-child(3) {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 16px;
+            text-transform: lowercase;
+            margin-top: 12px;
+        }
+
+        /* Adaptación para pantallas más pequeñas */
+        @media (max-width: 768px) {
+            .container {
+                flex-wrap: wrap;
+                /* Permitir varias filas en pantallas pequeñas */
+                gap: 1px;
+            }
+
+            .item {
+                width: 120px;
+                height: 120px;
+                font-size: 1rem;
+                margin-left: 0px;
+                /* Eliminar la superposición en pantallas pequeñas */
+                margin-bottom: -10px;
+                /* Espacio entre filas en pantallas pequeñas */
+            }
+
+            .item:not(:first-child) {
+                margin-left: 0;
+                /* Eliminar la superposición en pantallas pequeñas */
+            }
+
+
+            .item:hover .description {
+                margin-top: -18px;
+            }
+
+            .one-face ul li:nth-child(1) {
+
+                font-size: 25px;
+            }
+
+            .one-face ul li:nth-child(2) {
+                font-size: 12px;
+                line-height: 14px;
+                text-transform: uppercase;
+            }
+
+            .description ul li:nth-child(1) {
+
+                font-size: 20px;
+            }
+
+            .description ul li:nth-child(2) {
+                font-size: 11px;
+                line-height: 13px;
+            }
+
+            .description ul li:nth-child(3) {
+                font-size: 10px;
+                font-weight: 200;
+                line-height: 13px;
+                margin-top: 0px;
+            }
+
+
+
+        }
+
+        @media (max-width: 500px) {
+            .item {
+                width: 150px;
+                height: 150px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">
+            <div class="one-face">
+                <ul>
+                    <li>350</li>
+                    <li>Universities</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>350</li>
+                    <li>Universities</li>
+                    <li>and research centres in our network</li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="one-face item-2">
+                <ul>
+                    <li>20</li>
+                    <li>years addressing
+                        global challenges</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>20</li>
+                    <li>years addressing
+                        global challenges</li>
+                    <li>consistently addressed by deploying the most innovative science</li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="one-face">
+                <ul>
+                    <li>35+</li>
+                    <li>countries</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>35+</li>
+                    <li>countries</li>
+                    <li>in which we are present</li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="one-face">
+                <ul>
+                    <li>52</li>
+                    <li>Industries</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>52</li>
+                    <li>Industries</li>
+                    <li>represented in our corporate network</li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="one-face">
+                <ul>
+                    <li>50+</li>
+                    <li>Million <br>People</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>50+</li>
+                    <li>Million People</li>
+                    <li>consistently addressed by benefitting from science & technology we've helped drive</li>
+                </ul>
+            </div>
+        </div>
+        <div class="item">
+            <div class="one-face">
+                <ul>
+                    <li>10K+</li>
+                    <li>Direct and indirect high-impact jobs</li>
+                </ul>
+            </div>
+            <div class="description">
+                <ul>
+                    <li>10K+</li>
+                    <li>Direct and indirect high-impact jobs</li>
+                    <li>created across geographies in the last decade</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
