@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+
+
+    
+  </head>
+
+
+  
+  <body>
+    <style>
+
+body {
+    background-color: black;
+}
+
+.box {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+.grid-pixel_bg-9x9 {
+    display: grid;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: clip;
+}
+
+.grid_pixel {
+    width: 100%;
+    height: 100%;
+    background-color: #ccff00;
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.grid_pixel.variant1 {
+    background-color: #c7fa00; /* Variación más clara */
+}
+
+.grid_pixel.variant2 {
+    background-color: #b8e600; /* Variación más oscura */
+}
+
+.grid_pixel.variant3 {
+    background-color: #a9d200; /* Otra variación */
+}
+
+.grid_pixel.hidden {
+    opacity: 0;
+}
+
+.box:hover .grid_pixel {
+    opacity: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+    background-color: #ccff00;
+    padding: 0px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    filter: pixelate(5px); /* Aplicar filtro de pixelado */
+    image-rendering: pixelated; /* Para imágenes pixeladas */
+}
+
+.box:hover .content {
+    background-color: aliceblue;
+    color: #ccff00;
+    transform: scale(1.05);
+    filter: pixelate(3px); /* Reducir el tamaño del pixelado en hover */
+}
+
+.title, .description {
+    transition: all 0.3s ease;
+}
+
+.box:hover .title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.box:hover .description {
+    font-size: 16px;
+    color: #ccff00;
+}
+
+.hover-text {
+    display: none;
+}
+
+.box:hover .hover-text {
+    display: block;
+}
+
+
+
+
+    </style>    
+    <div class="box">
+    <div class="grid-pixel_bg-9x9"></div>
+    <div class="content">
+        <p class="title">GLOBAL PRESENCE</p>
+        <p class="description">WE HAVE HODLERS IN OVER 32 COUNTRIES</p>
+        <p class="hover-text hidden">NEW TEXT ON HOVER</p>
+    </div>
+</div>
+
+    <script type="text/javascript">
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Generar píxeles automáticamente
+    const grid = document.querySelector('.grid-pixel_bg-9x9');
+    for (let i = 0; i < 81; i++) {
+        const pixel = document.createElement('span');
+        pixel.classList.add('grid_pixel');
+
+        // Asignar una clase variante aleatoriamente
+        const variantClass = `variant${Math.floor(Math.random() * 4)}`;
+        pixel.classList.add(variantClass);
+
+        grid.appendChild(pixel);
+    }
+
+    const pixels = document.querySelectorAll('.grid_pixel');
+
+    const protectedCells = new Set([
+        10, 11, 12, 13, 14, 
+        19, 20, 21, 22, 23, 
+        28, 29, 30, 31, 32, 
+        37, 38, 39, 40, 41, 
+        46, 47, 48, 49, 50,
+        55, 56, 57, 58, 59
+    ]);
+
+    function hideOuterPixels() {
+        pixels.forEach((pixel, index) => {
+            if (!protectedCells.has(index) && Math.random() > 0.5) {
+                pixel.classList.add('hidden');
+            }
+        });
+    }
+
+    function addHoverTransitionDelays() {
+        pixels.forEach((pixel, index) => {
+            const delay = (index % 9) * 0.1 + Math.floor(index / 9) * 0.1;
+            pixel.style.transitionDelay = `${delay}s`;
+        });
+    }
+
+    function toggleTextOnHover() {
+        const title = document.querySelector('.title');
+        const description = document.querySelector('.description');
+        const hoverText = document.querySelector('.hover-text');
+        const box = document.querySelector('.box');
+
+        box.addEventListener('mouseover', () => {
+            title.style.display = 'none';
+            description.style.display = 'none';
+            hoverText.style.display = 'block';
+        });
+
+        box.addEventListener('mouseout', () => {
+            title.style.display = 'block';
+            description.style.display = 'block';
+            hoverText.style.display = 'none';
+        });
+    }
+
+    hideOuterPixels();
+    addHoverTransitionDelays();
+    toggleTextOnHover();
+});
+
+
+
+    </script>
+  </body>
+</html>
