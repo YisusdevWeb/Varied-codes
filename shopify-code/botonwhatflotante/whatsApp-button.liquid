@@ -1,0 +1,73 @@
+{% if settings.whatsapp_number != blank %}
+    <a id="whatsapp-link" class="whatsapp-button" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var phoneNumber = "{{ settings.whatsapp_number | replace: '+', '' }}";
+        var defaultMessage = "{{ settings.whatsapp_message | url_encode }}";
+        var currentPage = encodeURIComponent(window.location.href);
+  
+        var fullMessage = defaultMessage + "%0A%0A📍 Escribo desde: " + currentPage;
+        var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + fullMessage;
+  
+        document.getElementById("whatsapp-link").setAttribute("href", whatsappURL);
+      });
+    </script>
+  
+    <style>
+      .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+  
+        transition: all 0.3s ease-in-out;
+      }
+      .whatsapp-button img {
+        width: {{ settings.whatsapp_icon_size }}px;
+        height: {{ settings.whatsapp_icon_size }}px;
+      }
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  {% endif %}
+  
+
+<!--     
+  /*para mostrar óder editar el boton desde la configuracion de personalizacion de la plantilla*/
+
+  {
+    "name": "WhatsApp",
+    "settings": [
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "Número de WhatsApp",
+        "default": "+521234567890"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_message",
+        "label": "Mensaje predeterminado",
+        "default": "¡Hola! Estoy interesado en sus productos."
+      },
+      {
+        "type": "range",
+        "id": "whatsapp_icon_size",
+        "label": "Tamaño del icono de WhatsApp",
+        "min": 30,
+        "max": 100,
+        "step": 5,
+        "default": 50,
+        "unit": "px"
+      }
+    ]
+  }
+
+
+  renderizarlo en el archivo de la plantilla
+  {% render 'whatsapp-button' %}
+
+  -->

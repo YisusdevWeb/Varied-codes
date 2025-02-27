@@ -1,0 +1,149 @@
+<style>
+   
+
+    .custom-container {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr); /* Diseño original */
+        grid-template-rows: repeat(10, 1fr);
+        gap: 10px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .custom-category {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        font-size: 1.5em;
+        font-weight: bold;
+        height: 300px;
+        transition: transform 0.3s ease;
+    }
+
+    .custom-category:hover {
+        transform: scale(1.03);
+    }
+
+    .custom-name {
+        width: 50%;
+        height: 120px;
+        background-color: green;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 20px 0 0px;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .custom-name a {
+        background: #90DC58;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      
+    }
+
+    .custom-name a:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+
+    .area-alineamiento p {
+    margin: 0;
+}
+
+.area-alineamiento {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+    /* Distribución con Grid Áreas (Manteniendo el diseño original) */
+    .custom-category:nth-child(1) {
+        grid-area: 1 / 1 / 6 / 5;
+        background: url('ruta-de-imagen-abarrotes.jpg') center/cover, #a68d5d;
+    }
+
+    .custom-category:nth-child(2) {
+        grid-area: 1 / 5 / 6 / 11;
+        background: url('ruta-de-imagen-dulceria.jpg') center/cover, #ff6666;
+    }
+
+    .custom-category:nth-child(3) {
+        grid-area: 6 / 1 / 11 / 7;
+        background: url('ruta-de-imagen-snacks.jpg') center/cover, #ffcc00;
+    }
+
+    .custom-category:nth-child(4) {
+        grid-area: 6 / 7 / 11 / 11;
+        background: url('ruta-de-imagen-galletas.jpg') center/cover, #996633;
+    }
+
+    /* 🔹 SOLO PARA MÓVILES */
+    @media (max-width: 768px) {
+        .custom-container {
+            display: flex
+;
+        flex-direction: column;
+        }
+
+        .custom-category {
+            width: 100%;
+        
+        text-align: center;
+        }
+
+        .custom-name {
+            width: 50%;
+    height: 120px;
+    background-color: green;
+    display: flex
+;
+    border-radius: 0px 20px 0 0px;
+    padding: 10px 20px;
+    align-items: center;
+        }
+
+        .custom-name a {
+            font-size: 13px;
+        }
+    }
+</style>
+
+<div class="custom-container">
+    <div class="custom-category">
+        <div class="custom-name">
+            
+           <div class="area-alineamiento"><p> Abarrotes</p>
+            <a href="#">Ver productos</a></div>
+        </div>
+    </div>
+    <div class="custom-category">
+        <div class="custom-name">
+           <div class="area-alineamiento"><p> Dulcería</p>
+            <a  href="#">Ver productos</a></div>
+        </div>
+    </div>
+    <div class="custom-category">
+        <div class="custom-name">
+           <div class="area-alineamiento"><p> Snacks & Bebidas</p>
+            <a  href="">Ver productos</a></div>
+        </div>
+    </div>
+    <div class="custom-category">
+        <div class="custom-name">
+           <div class="area-alineamiento"><p> Galletas</p>
+            <a href="#">Ver productos</a></div>
+        </div>
+    </div>
+</div>

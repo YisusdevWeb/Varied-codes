@@ -1,0 +1,249 @@
+{% schema %}
+{
+  "name": "Categorías en Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configuración de Categorías"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_1_image",
+      "label": "Imagen 1 categoria"
+    },
+    {
+      "type": "text",
+      "id": "category_1_name",
+      "label": "Nombre de 1 categoria",
+      "default": "Abarrotes"
+    },
+    {
+      "type": "url",
+      "id": "category_1_link",
+      "label": "Enlace de 1 categoria",
+      "default": "/"
+    },
+    {
+      "type": "color",
+      "id": "category_1_bg",
+      "label": "Color de fondo de 1 categoria",
+      "default": "#a68d5d"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_2_image",
+      "label": "Imagen de 2 categoria"
+    },
+    {
+      "type": "text",
+      "id": "category_2_name",
+      "label": "Nombre de 2 categoria",
+      "default": "2 categoria"
+    },
+    {
+      "type": "url",
+      "id": "category_2_link",
+      "label": "Enlace de 2 categoria",
+      "default": "/"
+    },
+    {
+      "type": "color",
+      "id": "category_2_bg",
+      "label": "Color de fondo de 2 categoria",
+      "default": "#ff6666"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_3_image",
+      "label": "Imagen de 3 categoria"
+    },
+    {
+      "type": "text",
+      "id": "category_3_name",
+      "label": "Nombre de 3 categoria",
+      "default": "3 categoria"
+    },
+    {
+      "type": "url",
+      "id": "category_3_link",
+      "label": "Enlace de 3 categoria",
+      "default": "/"
+    },
+    {
+      "type": "color",
+      "id": "category_3_bg",
+      "label": "Color de fondo de 3 categoria",
+      "default": "#ffcc00"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_4_image",
+      "label": "Imagen de 4 categoria"
+    },
+    {
+      "type": "text",
+      "id": "category_4_name",
+      "label": "Nombre de 4 categoria",
+      "default": "4 categoria"
+    },
+    {
+      "type": "url",
+      "id": "category_4_link",
+      "label": "Enlace de 4 categoria",
+      "default": "/"
+    },
+    {
+      "type": "color",
+      "id": "category_4_bg",
+      "label": "Color de fondo de 4 categoria",
+      "default": "#996633"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categorías en Grid"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="custom-container">
+  {% for i in (1..4) %}
+    {% assign img_id = 'category_' | append: i | append: '_image' %}
+    {% assign name_id = 'category_' | append: i | append: '_name' %}
+    {% assign link_id = 'category_' | append: i | append: '_link' %}
+    {% assign bg_id = 'category_' | append: i | append: '_bg' %}
+
+    <div
+      class="custom-category"
+      style="{% if section.settings[img_id] %}background: url('{{ section.settings[img_id] | img_url: 'master' }}') center/cover, {{ section.settings[bg_id] }};{% else %}background-color: {{ section.settings[bg_id] }};{% endif %}"
+    >
+      <div class="custom-name">
+        <div class="area-alineamiento">
+          <p>{{ section.settings[name_id] }}</p>
+          <a href="{{ section.settings[link_id] }}">Ver productos</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<style>
+  .custom-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Diseño original */
+    grid-template-rows: repeat(10, 1fr);
+    gap: 10px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .custom-category {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 1.5em;
+    font-weight: bold;
+    height: 300px;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-category:hover {
+    transform: scale(1.03);
+  }
+  
+  .custom-name {
+    width: 50%;
+    height: 120px;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    border-radius: 0px 20px 0 0px;
+    padding: 10px;
+  }
+  
+  .custom-name a {
+    background: #90dc58;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  
+  .custom-name a:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .area-alineamiento p {
+    margin: 0 0 10px;
+    text-align: left;
+    line-height: 100%;
+  }
+  
+  .area-alineamiento {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+  /* Distribución con Grid Áreas (Manteniendo el diseño original) */
+  .custom-category:nth-child(1) {
+    grid-area: 1 / 1 / 6 / 5;
+    background: #a68d5d;
+  }
+  
+  .custom-category:nth-child(2) {
+    grid-area: 1 / 5 / 6 / 11;
+    background: #ff6666;
+  }
+  
+  .custom-category:nth-child(3) {
+    grid-area: 6 / 1 / 11 / 7;
+    background: #ffcc00;
+  }
+  
+  .custom-category:nth-child(4) {
+    grid-area: 6 / 7 / 11 / 11;
+    background: #996633;
+  }
+  
+  /* 🔹 SOLO PARA MÓVILES */
+  @media (max-width: 768px) {
+    .custom-container {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .custom-category {
+      width: 100%;
+  
+      text-align: center;
+    }
+  
+    .custom-name {
+      width: 50%;
+      height: 120px;
+      background-color: green;
+      display: flex;
+      border-radius: 0px 20px 0 0px;
+      padding: 10px 20px;
+    }
+  
+    .custom-name a {
+      font-size: 13px;
+    }
+    .area-alineamiento {
+      padding: 0 0px;
+    }
+  }
+  
+</style>
