@@ -1,0 +1,84 @@
+<div class="infinite-slider">
+  <div class="slider-track">
+    <div class="slide relleno">BAR </div>
+    <div class="slide strock">RESTAURANTE</div>
+    <div class="slide relleno">CLUB</div>
+    <div class="slide strock">DELIVERY</div>
+    <!-- Duplicamos las slides para lograr el efecto infinito -->
+    <div class="slide relleno">TAKE - AWAY </div>
+    <div class="slide strock">BAR</div>
+    <div class="slide relleno">TAKE - AWAY</div>
+    <div class="slide strock">DELIVERY</div>
+  </div>
+</div>
+
+<style>
+/*///////////////////////////////////////////////
+/*slider textos*/
+/*/////////////////////////////*/
+   
+    /* Contenedor del slider */
+    .infinite-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Pista que contiene las slides */
+.slider-track {
+  display: flex;
+  gap: 20px; /* Espaciado entre slides */
+  animation: scroll 20s linear infinite;
+  width: calc(100% * 2); /* Duplicamos contenido */
+}
+
+/* Estilo individual de las slides */
+.slide {
+  flex: 0 0 auto;
+  width: auto; /* Ancho de cada slide */
+  height: 100%;
+ /* background: #f0f0f0; /* Color de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #fff;
+/*  border: 1px solid #ddd;*/
+  border-radius: 5px;
+}
+
+
+.strock{
+
+    font-family: "Lato", Sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    -webkit-text-stroke-width: 2px;
+    stroke-width: 2px;
+    -webkit-text-stroke-color: var( --e-global-color-accent );
+    stroke: var( --e-global-color-accent );
+
+}
+.relleno{
+
+
+    color: var( --e-global-color-secondary );
+    font-family: "Lato", Sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    -webkit-text-stroke-width: 2px;
+    stroke-width: 2px;
+    -webkit-text-stroke-color: var( --e-global-color-secondary );
+    stroke: var( --e-global-color-secondary );
+}
+
+/* Animación para el desplazamiento */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+</style>
